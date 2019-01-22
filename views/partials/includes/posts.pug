@@ -1,0 +1,46 @@
+.row.posts.my-1
+	.col-12.col-md-6.col-lg-5.py-2.post.mb-2
+		.post-header.user-info.row
+			.col-9.col-md-8
+				a(href='/profile/'+posts[i].owner.userID)
+					img.mb-2.rounded(src=posts[i].owner.image, alt=posts[i].owner.fullname)
+					span.ml-2(style='color:rgba(0,0,0,0.5)') #{posts[i].owner.fullname}
+			.col-3.col-md-4.py-2.mod-center
+				span.time(style='font-weight:100') #{moment(posts[i].date).format('ll')}
+				// <span class="ml-1"><i class="fa fa-ellipsis-v"></i></span>
+		.post-body.mt-2
+			a(href='/post/'+posts[i]._id, style='display:block;')
+				img.img-fluid(src='/images/posts/'+posts[i].image, alt=posts[i].owner.fullname)
+			br
+			h5 Description
+				p.lead.mt-2 #{posts[i].description}
+			h5 Experience
+				p.lead.mt-2 #{posts[i].experience}
+
+		.post-footer.py-2.px-2
+			.row
+				.col-8
+					if posts[i].likes.indexOf(session_id) == -1
+						button.like.bg-btn.fa.fa-thumbs-up(data-post=posts[i]._id)
+
+					else
+						button.like.bg-btn.fa.fa-thumbs-up(style='color:#0275d8;',data-post=posts[i]._id)
+					span.countLikes #{posts[i].likes.length}
+					button.comments.bg-btn.ml-2
+						i.fa.fa-comment
+					span.countComments #{posts[i].comments.length}
+			// comment section
+			.row.mt-3
+				.comment-list.my-2
+					if posts[i].comments.length>0
+						if !single
+							.comment.my-2 #{posts[i].comments[posts[i].comments.length-1].comment}
+								a.mr-2(href='/profile/'+posts[i].comments[posts[i].comments.length - 1].user ,)=posts[i].comments[posts[i].comments.length - 1].fullname
+							a.seperate.ml-2(href='/post/'+ posts[i]._id) View all comments
+						else
+							-for(var j=0;posts[i].comments.length;j++)
+								.comment.my-2= posts[i].comments[j].comment
+									a.mr-2(href='/profile/'+ posts[i].comments[j].user)= posts[i].comments[j].fullname
+				form#comment-form.mt-2
+					input.form-control(type='text',name='',placeholder='Add a comment..')
+					button.btn-comment.fa.fa-check(data-post=posts[i]._id )

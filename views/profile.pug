@@ -1,0 +1,70 @@
+extends layout/layout
+block content
+	.container.profile
+		.row.bio.py-3
+			.col-5
+				img(src=user.image ,alt=user.fullname)
+				form#profileUpdate
+					input(type='file', name='profile_picture')
+			.col-7.details
+				span #{user.fullname} 
+				span.username #{user.username}
+				p.lead.mt-2 #{user.bio}
+				table.mb-2
+					tbody
+						tr
+							td.followers
+								b  #{user.followers.length}
+							td.followings
+								b #{user.following.length}
+						tr
+							td followers
+							td following
+				if allow
+					button.btn-upload.profilePic
+						i.fa.fa-camera
+					|  Change Picture
+
+				if !allow
+					a.btn-msg(href='/messages', style='display: inline-block;')
+						i.fa.fa-envelope
+					#flw-delg(style='display:inline')
+						if !isFollow
+							button#follow.btn-follow(data-user={id:user._id})
+								i.fa.fa-user-plus
+								|  Follow
+						else
+							button#unfollow.btn-follow(data-user={id:user._id})
+								i.fa.fa-user-times
+								|  Unfollow
+				
+		.row.t-header.py-2
+			span.mx-3.mr-auto
+				i.fa.fa-clone.mr-1
+				b #{user.posts.length}
+				|  posts
+			span.mr-5.total-likes
+				i.fa.fa-thumbs-o-up.mr-1
+				b #{user.likes}
+				|  liked
+		.row.mb-3.profile-posts
+			if user.posts.length > 0
+				-for(var i=0; i<user.posts.length; i++)
+					.post-thumbnail.col-4
+						a(href='#')
+							img.img-fluid(src='/images/posts/'+user.posts[i].image, alt='')
+						p description #{user.posts[i].description}
+						p experience #{user.posts[i].experience}
+				
+
+			else
+				.col-12.mx-auto.py-5.px-5(style='height:300px;')
+					h1.display-4 No post found !
+			
+				//- // Load More Button
+				//- //
+				//- 	<div class="col-6 mx-auto my-4">
+				//- 	<button class="btn-load">Loading <i class="fa fa-spinner"></i></button>
+				//- 	</div>
+	// Panels
+	include partials/panels/panel 

@@ -1,0 +1,27 @@
+extends layout/layout
+block content
+	.container.chatBox
+		.swipe-form.col-12.col-lg-6.mt-5.mx-auto
+			#chatForm.header
+				p.lead
+					button#swipeChat.bg-btn.hidden-lg-up.swipe_btn(style='font-size:1em; float:left;margin-right:2%;color:#fff;')
+						i.fa.fa-align-right.swipe_btn
+					img(src='https://unsplash.it/50/50', alt='')
+					b Select user
+				#textArea
+			.chatForm
+				input.form-control(type='text', name='textMsg', placeholder='Send your message')
+				button.btn-send.fa.fa-send(data-sender= session_id)
+			#menu-panel.py-5.index.user-list(style='overflow: auto;padding-bottom: 20px;')
+				p.lead Chat Box
+				if user.length > 0
+					-for(var i=0;i<user.length; i++)
+						li(data-sender=session_id , data-receiver=user[i]._id)
+							if(user[i].image && !user[i].image.includes("http"))
+								img(src='../images/profile/'+user[i].image, alt=user[i].fullname)
+							else
+								img(src=user[i].imagea,alt=user[i].fullname)
+							span=user[i].fullname
+				
+	// Panels
+	include ./partials/panels/panel

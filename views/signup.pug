@@ -1,0 +1,37 @@
+extends layout/layout
+block content
+	.container.user-form.py-5
+		span.site-logo.my-3 Community Network
+		p.lead.my-1 Join the community now and share your photos and stories.
+		.row
+			.col-12.col-lg-4.offset-lg-2
+				form#signup.mt-5
+					.form-group
+						input.form-control(type='text', name='fullname', value='', placeholder='Fullname')
+					.form-group
+						input.form-control(type='text', name='username', value='', placeholder='Username')
+					.form-group
+						input.form-control(type='email', name='email', value='', placeholder='example@abc.com')
+					.form-group
+						input.form-control(type='password', name='password', value='', placeholder='Enter Password')
+					.form-group
+						input.form-control(type='password', name='confirm', value='', placeholder='Confirm Password')
+					button(type='submit', name='submit') Sign Up
+			.col-12.col-lg-4.more
+				span.or.mt-3.hidden-lg-up or
+				.social-options.pt-2.mb-5.mx-auto
+					span.lead.hidden-md-down sign up with
+					button#fb
+						i.fa.fa-facebook
+						| acebook
+					button#google
+						i.fa.fa-google
+						| oogle
+				span.lead Already have an account ?
+				a.btn-jump(href='/') Sign In
+		// Flash Message modal
+		#flashModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalLabel', aria-hidden='true')
+			.modal-dialog(role='document')
+				.modal-content
+					.modal-body
+						// Error and success Messages

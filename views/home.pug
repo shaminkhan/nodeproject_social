@@ -1,0 +1,31 @@
+extends layout/layout
+block content
+	.container
+		.row.mb-2
+			form#post-form.col-md-6.col-lg-5.px-2.py-2(enctype='multipart/form-data')
+				.user-info
+					img.ml-2.mb-2(src=user.image ,alt=user.fullname)
+					span.ml-2 #{user.fullname}
+				.form-group
+					textarea.form-control.body(name='description', maxlength='120', placeholder='describe your deed')
+				.form-group
+					textarea.form-control.body(name='experience', maxlength='120', placeholder='Share your experience')
+				.form-group
+					label.px-2(for='upload', name='uploadPost')
+						i.fa.fa-camera.mr-2
+						|  Upload Photo
+					input.upload(type='file', name='upload')
+					.progress
+						.progress-bar(role='progressbar', aria-valuenow='25', aria-valuemin='0', aria-valuemax='100')
+				button.btn-post.mr-2(type='submit', name='Share') Post
+		// posts
+		#postsParent
+			if posts.length > 0
+				-for(var i=0;i<posts.length;i++)
+					include partials/includes/posts
+
+				//- for(var i=0;i<posts.length;i++){
+				//- 	include partials/includes/posts
+				//- }
+	// Panels
+	include partials/panels/panel

@@ -1,0 +1,30 @@
+extends layout/layout
+block content
+	nav.mobile-nav.py-2.hidden-md-up
+		a.active(href='/')
+			i.fa.fa-home
+		a(href='/profile/'+ user._id )
+			i.fa.fa-user
+		a.mx-4.search(href='#')
+			i.fa.fa-search
+		a(href='#')
+			i.fa.fa-inbox
+		a.btn-settings(href='#')
+			i.fa.fa-cog
+	#search.container.py-5
+		span.search-box
+			input(type='hidden', name='sess_id', value= session_id)
+			input.form-control.searchUser(type='search', name='', value='', placeholder='Search')
+			i.fa.fa-search
+		.sub-search.mt-4
+			// Search results
+	// Panels
+	#panel-settings.panel.px-2.pt-4
+		li
+			a(href='#')
+				| Account Settings
+				i.fa.fa-angle-right.py-2.hidden-md-up
+		li
+			a(href='#')
+				| Sign Out
+				i.fa.fa-angle-right.py-2.hidden-md-up

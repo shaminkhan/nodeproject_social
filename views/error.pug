@@ -1,0 +1,10 @@
+extends layout/layout
+block content
+	#errorPage
+		.move
+			h1.display-1 404
+			span Not found
+			p.lead (See the console log for errors)
+		a(href='/home') Back to home
+	script.
+		console.log(Error:#{message});

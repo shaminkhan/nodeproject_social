@@ -1,0 +1,50 @@
+extends layout/layout
+block content
+	.container.login.user-form.py-5
+		span.site-logo.my-3 Community Network
+		p.lead.my-1 Join the community now and share your photos and stories.
+		.row
+			.col-12.col-lg-4.offset-lg-2
+				form.my-5(action='/login', method='post')
+					if error.length>0
+						.alert.alert-danger(role='alert') #{error}
+					if success.length>0
+						.alert.alert-success(role='alert') #{success}
+					.form-group
+						input.form-control(type='email', name='email', value='', placeholder='Email Address')
+					.form-group
+						input.form-control(type='password', name='password', value='', placeholder='Password')
+					button(type='submit', name='submit') Sign In
+				a(href='#', data-toggle='modal', data-target='#resetModal')  I forgot my password 
+			.col-12.col-lg-4.more
+				span.or.mt-3.hidden-lg-up or
+				.social-options.pt-2.mb-5.mx-auto
+					span.lead.hidden-md-down login with
+					button#fb
+						i.fa.fa-facebook
+						| acebook
+					button#google
+						i.fa.fa-google
+						| oogle
+				span.lead Doesn't have an account ?
+				a.btn-jump(href='/signup') Sign Up Now
+	// Forgot Password modal
+	#resetModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalLabel', aria-hidden='true')
+		.modal-dialog(role='document')
+			.modal-content
+				.modal-body
+					p.lead In order to reset your password you need to enter your email address here.
+					form#reset
+						#flash
+						input.form-control.my-2(type='email', name='email', placeholder='Email Address')
+						button.bg-btn(type='submit', name='submit') Reset
+					//- //
+					//- 	<div id="error" class="flash">
+					//- 	<i class="fa fa-times-circle"></i>
+					//- 	<p class="lead">Something went wrong.</p>
+					//- 	</div>
+					//- //
+					//- 	<div id="success" class="flash">
+					//- 	<i class="fa fa-check-square"></i>
+					//- 	<p class="lead">Something went wrong.</p>
+					//- 	</div>

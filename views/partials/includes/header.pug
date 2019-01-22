@@ -1,0 +1,34 @@
+header
+	a.site-logo.mb-2(href='/home')
+		span Community Network
+	span.mx-3.links.hidden-sm-down
+		span.search-box.ml-5
+			input(type='hidden', name='sess_id', value=session_id)
+			input.form-control.searchUser(type='search', name='search', placeholder='Search', autocomplete='off')
+			i.fa.fa-search
+			.sub-panel.sub-search
+				p.lead.py-2.px-3(style='text-align:center;color:#a9a9a9;')
+					i.fa.fa-search.mr-3
+					| Looking for someone
+		a(href='/profile/'+session_id)
+			i.fa.fa-user-o
+		a(href='/messages')
+			i.fa.fa-envelope-open-o
+		button#sub-menu
+			i.fa.fa-bell-o
+			.sub-panel
+				ul
+					li
+						a(href='#')
+							img.mr-3(src='https://unsplash.it/50/50', alt='')
+							b fari_d_dev
+							|  liked your photo. 
+							i.ml-2 12h
+							img.ml-5(src='https://unsplash.it/50/50', alt='')
+	button.btn-notification.bg-btn.hidden-md-up(style='font-size:1em;')
+		i.fa.fa-bell
+	button#sub-menu.lg-setting.bg-btn.btn-lg-set.hidden-sm-down.mr-4(type='button')
+		i.fa.fa-th-large
+		.sub-panel
+			a(href='/update') Update Information
+			a(href='/logout') Sign out

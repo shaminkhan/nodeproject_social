@@ -1,0 +1,28 @@
+extends layout/layout
+block content
+	.container
+		.swipe-form.col-12.col-lg-6.mt-5.mx-auto
+			form#updateForm.py-3(enctype='multipart/form-data')
+				button#swipe.bg-btn.hidden-lg-up.swipe_btn(style='font-size:1em; float:left;')
+					i.fa.fa-align-right.swipe_btn
+				.row(style='clear:both;')
+					.col-12.col-md-4(style='text-align:center')
+						if user.image && !isImage
+							img.ml-2.mb-2(src='../images/profile/'+user.image,alt= user.fullname)
+						else
+							img.ml-2.mb-2(src=user.image, alt=user.fullname)
+					.col-12.col-md-8
+						span #{user.fullname}
+						b #{user.username}
+						p.lead #{user.bio}
+					.col-11.col-md-12.mx-auto
+						#flash.my-2
+						input.form-control(type='text', name='fullname', value=user.fullname, placeholder='Your name')
+						input.form-control(type='text', name='username', value=user.username, placeholder='Your Username')
+						textarea.form-control(name='bio', maxlength='120', placeholder='About yourself') #{user.bio}
+						button.bg-btn.btn-save(type='button', name='button') Save
+			#menu-panel.py-5.index
+				a#loadForm.my-3(href='#', data-user={username: user.username,fullname:user.fullname,email:user.email,bio:user.bio,image:user.image}, data-get='infoForm') Profile
+				a#loadForm.my-3(href='#', data-user={id:user._id}, data-get='passwordchange') Account Settings
+	// Panels
+	include partials/panels/panel
